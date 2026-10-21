@@ -1,24 +1,19 @@
 import express from "express";
+import { getEmployee, getEmployees, getRandomEmployee } from "#db/employees";
 
 const app = express();
 export default app;
 
+import employeeRouter from "#api/employee";
+
 app.use(express.json());
 
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello employees!");
 });
 
-app.use(express.json());
-
 app.use("/employees", employeeRouter);
 
-import employeeRouter from "#api/employee";
-// Note: this middleware has to come first! Otherwise, Express will treat
-// "random" as the argument to the `id` parameter of /employees/:id.
-app.use("/employees", employeeRouter);
-
-// Catch-all error-handling middleware
 app.use((err, req, res, next) => {
-  res.status(500).send("Sorry! Something went wrong :(");
+  res.status(500).send("Sorry, something went wrong :(");
 });

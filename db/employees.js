@@ -14,15 +14,21 @@ const employees = [
 /* WARNING: this must remain the default export in order for the tests to work! */
 export default employees;
 
-export function getEmployees() {
-  return employees;
-}
+// export function getEmployees() {
+//   return employees;
+// }
 
-export function getEmployee(id) {
+export function getEmployeeById(id) {
   return employees.find((e) => e.id === id);
 }
 
 export function getRandomEmployee() {
   const randomIndex = Math.floor(Math.random() * employees.length);
   return employees[randomIndex];
+}
+
+export function addEmployee(name) {
+  const employee = { id: employees.length + 1, name };
+  employees.push(employee);
+  return employee;
 }
