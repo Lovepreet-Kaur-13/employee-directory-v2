@@ -33,3 +33,8 @@ app.get("/employees/:id", (req, res) => {
 
   res.send(employee);
 });
+
+// Catch-all error-handling middleware
+app.use((err, req, res, next) => {
+  res.status(500).send("Sorry! Something went wrong :(");
+});
